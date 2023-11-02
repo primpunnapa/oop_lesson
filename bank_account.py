@@ -9,6 +9,15 @@ class AccountDB:
         else:
             print(account, "Duplicated account; nothing to be insert")
 
+    # Add this function for deleting account
+    def delete_account(self, num):
+        index = self.__search_private(num)
+        if index != -1:
+            print("Deleting account:", self.account_database[index].account_number)
+            del self.account_database[index]
+        else:
+            print(num, "invalid account number; nothing to be deleted.")
+
     def __search_private(self, account_num):
         for i in range(len(self.account_database)):
             if self.account_database[i].account_number == account_num:
@@ -63,5 +72,13 @@ my_account_DB.search_public("0003").deposit(50)
 print(my_account_DB)
 my_account_DB.search_public("0003").withdraw(100)
 print(my_account_DB)
-my_account_DB.search_public("0010").deposit(50)
+my_account_DB.search_public("0001").deposit(50)
 print(my_account_DB)
+
+# Testing delete_account's function
+my_account_DB.delete_account("0003")
+print(my_account_DB)
+my_account_DB.delete_account("003")
+print(my_account_DB)
+
+
